@@ -51,7 +51,14 @@ class SentMemesTableViewController: UITableViewController {
         cell.memeTitle.text = memes[indexPath.row].topLine
         return cell
     }
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let detailVC = self.storyboard!.instantiateViewController(withIdentifier: "viewMemes") as! ViewMemesViewController
+        detailVC.memeImage = memes[indexPath.row].memedImage
+        self.navigationController?.pushViewController(detailVC, animated: true)
+        
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

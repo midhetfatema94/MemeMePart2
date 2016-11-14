@@ -67,6 +67,14 @@ class SentMemesCollectionViewController: UICollectionViewController {
         cell.sentMeme.image = memes[indexPath.item].memedImage
         return cell
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let detailVC = self.storyboard!.instantiateViewController(withIdentifier: "viewMemes") as! ViewMemesViewController
+        detailVC.memeImage = memes[indexPath.row].memedImage
+        self.navigationController?.pushViewController(detailVC, animated: true)
+        
+    }
 
     // MARK: UICollectionViewDelegate
 

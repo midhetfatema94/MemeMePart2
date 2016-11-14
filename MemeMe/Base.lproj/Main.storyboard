@@ -405,7 +405,7 @@
         <!--View Memes View Controller-->
         <scene sceneID="dab-pj-y7T">
             <objects>
-                <viewController id="m4a-U0-xxE" customClass="ViewMemesViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="viewMemes" id="m4a-U0-xxE" customClass="ViewMemesViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WBF-U7-311"/>
                         <viewControllerLayoutGuide type="bottom" id="24X-et-LFf"/>
@@ -426,6 +426,9 @@
                             <constraint firstItem="KPh-Fi-oDx" firstAttribute="top" secondItem="WBF-U7-311" secondAttribute="bottom" constant="8" id="VI2-7L-zR0"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="meme" destination="KPh-Fi-oDx" id="euv-n6-48q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LKE-c9-zYg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
