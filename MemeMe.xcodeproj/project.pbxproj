@@ -19,6 +19,7 @@
 		BBB0EED71DD4EFFF008D8755 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BBB0EED61DD4DA8C008D8755 /* Impact.ttf */; };
 		BBB0EF151DD99D97008D8755 /* SentMemesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB0EF141DD99D97008D8755 /* SentMemesTableViewController.swift */; };
 		BBB0EF171DD99DC2008D8755 /* SentMemesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB0EF161DD99DC2008D8755 /* SentMemesCollectionViewController.swift */; };
+		BBB0EF191DD9C5AF008D8755 /* ViewMemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB0EF181DD9C5AF008D8755 /* ViewMemesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		BBB0EED61DD4DA8C008D8755 /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Impact.ttf; sourceTree = "<group>"; };
 		BBB0EF141DD99D97008D8755 /* SentMemesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentMemesTableViewController.swift; sourceTree = "<group>"; };
 		BBB0EF161DD99DC2008D8755 /* SentMemesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentMemesCollectionViewController.swift; sourceTree = "<group>"; };
+		BBB0EF181DD9C5AF008D8755 /* ViewMemesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewMemesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 		BB8B11971DD214C000F5EA73 = {
 			isa = PBXGroup;
 			children = (
+				BBB0EF181DD9C5AF008D8755 /* ViewMemesViewController.swift */,
 				BB8B11A21DD214C000F5EA73 /* MemeMe */,
 				BB8B11B71DD214C000F5EA73 /* MemeMeTests */,
 				BB8B11C21DD214C000F5EA73 /* MemeMeUITests */,
@@ -297,6 +300,7 @@
 				BB8B11A61DD214C000F5EA73 /* ViewController.swift in Sources */,
 				BBB0EF151DD99D97008D8755 /* SentMemesTableViewController.swift in Sources */,
 				BBB0EF171DD99DC2008D8755 /* SentMemesCollectionViewController.swift in Sources */,
+				BBB0EF191DD9C5AF008D8755 /* ViewMemesViewController.swift in Sources */,
 				BBB0EECF1DD46122008D8755 /* PhotoAlbum.swift in Sources */,
 				BB8B11A41DD214C000F5EA73 /* AppDelegate.swift in Sources */,
 				BBB0EED51DD4771F008D8755 /* CustomizeFontViewController.swift in Sources */,

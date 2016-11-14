@@ -10,6 +10,7 @@ import UIKit
 
 class SentMemesCollectionViewController: UICollectionViewController {
     
+    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     var memes: [Meme] {
         return (UIApplication.shared.delegate as! AppDelegate).memes
     }
@@ -19,16 +20,22 @@ class SentMemesCollectionViewController: UICollectionViewController {
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
+        let space: CGFloat = 3.0
+        let widthDimension = (self.view.frame.width - (2*space))/3.0
+        let heightDimension = (self.view.frame.height - (2*space))/5.0
+        flowLayout.minimumInteritemSpacing = space
+        flowLayout.minimumLineSpacing = space
+        flowLayout.itemSize = CGSize(width: widthDimension, height: heightDimension)
+        
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "sentMemeCollection")
+//        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "sentMemes")
 
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(_ animated: Bool) {
+        collectionView!.reloadData()
     }
 
     /*
@@ -56,7 +63,7 @@ class SentMemesCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "sentMemeCollection", for: indexPath) as! SentMemesCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "sentMemes", for: indexPath) as! SentMemesCollectionViewCell
         cell.sentMeme.image = memes[indexPath.item].memedImage
         return cell
     }

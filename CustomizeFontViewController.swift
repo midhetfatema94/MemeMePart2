@@ -64,6 +64,13 @@ class CustomizeFontViewController: UIViewController, UIPickerViewDelegate, UIPic
         picker.reloadAllComponents()
     }
     
+    @IBAction func cancelChanges(_ sender: UIBarButtonItem) {
+        
+        finalFont = Font(name: "Impact", size: 56)
+        finalFill = UIColor.white
+        finalStroke = Stroke(color: UIColor.black, width: 4.0)
+        self.dismiss(animated: true, completion: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         

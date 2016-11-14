@@ -18,6 +18,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var memeImage: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
     
     var fill: UIColor!
     var font: Font!
@@ -51,6 +53,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         
         let saveMeme = Meme(topLine: topTextField.text!, bottomLine: bottomTextField.text!, memedImage: image, originalImage: memeImage.image!)
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(saveMeme)
+        
         sharingItems.append(saveMeme.memedImage)
         
         CustomPhotoAlbum.sharedInstance.saveImage(image: saveMeme.memedImage)
@@ -69,6 +75,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             self.bottomTextField.text = "Bottom Line"
             self.memeImage.image = nil
             alert.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: {action in
             
@@ -129,7 +136,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         textField.resignFirstResponder()
         activeField = nil
+        canShare()
+        
         return true
+    }
+    
+    func canShare() {
+        
+        if topTextField.text != "" && topTextField.text != "Top Line" && bottomTextField.text != "" && bottomTextField.text != "Bottom Line" && memeImage.image != nil {
+            
+            shareButton.isEnabled = true
+        }
     }
     
     func keyboardWillShow(_ notification: Notification) {
@@ -172,7 +189,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             memeImage.image = pickedImage
         }
         imagePicker.dismiss(animated: true, completion: nil)
-        
+        canShare()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
