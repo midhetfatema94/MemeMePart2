@@ -21,7 +21,7 @@ class SentMemesCollectionViewController: UICollectionViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
-        let space: CGFloat = 3.0
+        let space: CGFloat = 1.0
         let widthDimension = (self.view.frame.width - (2*space))/3.0
         let heightDimension = (self.view.frame.height - (2*space))/5.0
         flowLayout.minimumInteritemSpacing = space

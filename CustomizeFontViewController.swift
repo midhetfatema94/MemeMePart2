@@ -33,6 +33,7 @@ class CustomizeFontViewController: UIViewController, UIPickerViewDelegate, UIPic
         prevVC.makeFont()
         self.dismiss(animated: true, completion: nil)
     }
+    
     @IBAction func donePicker(_ sender: UIBarButtonItem) {
         
         picker.isHidden = true
@@ -66,10 +67,20 @@ class CustomizeFontViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     @IBAction func cancelChanges(_ sender: UIBarButtonItem) {
         
-        finalFont = Font(name: "Impact", size: 56)
-        finalFill = UIColor.white
-        finalStroke = Stroke(color: UIColor.black, width: 4.0)
-        self.dismiss(animated: true, completion: nil)
+        let alert = UIAlertController(title: "Cancel Changes", message: "Are you sure you want to clear all the changes?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
+            
+            self.finalFont = Font(name: "Impact", size: 56)
+            self.finalFill = UIColor.white
+            self.finalStroke = Stroke(color: UIColor.black, width: 4.0)
+            alert.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: {action in
+            
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
