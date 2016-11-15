@@ -8,10 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     let imagePicker = UIImagePickerController()
     var activeField: UITextField?
+    var isShared = false
     
     @IBOutlet weak var memeView: UIView!
     @IBOutlet weak var bottomTextField: UITextField!
@@ -60,29 +61,46 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         sharingItems.append(saveMeme.memedImage)
         
         CustomPhotoAlbum.sharedInstance.saveImage(image: saveMeme.memedImage)
+        isShared = true
         
         let activityViewController = UIActivityViewController(activityItems: sharingItems, applicationActivities: nil)
         self.present(activityViewController, animated: true, completion: nil)
+        
+        //Code Reference: Stack Overflow
+        activityViewController.completionWithItemsHandler = {
+            (activity, success, items, error) in
+            print("Activity: \(activity) Success: \(success) Items: \(items) Error: \(error)")
+            if success && (activity != nil) {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
     }
     
     @IBAction func cancelClicked(_ sender: UIBarButtonItem) {
         
-        //Clears all the content if user chooses to restart
-        let alert = UIAlertController(title: "Alert", message: "Are you sure you want to clear all the changes?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
+        //Checks whether the image is shared otherwise popup appears
+        if isShared {
             
-            self.topTextField.text = "Top Line"
-            self.bottomTextField.text = "Bottom Line"
-            self.memeImage.image = nil
-            alert.dismiss(animated: true, completion: nil)
             self.dismiss(animated: true, completion: nil)
-        }))
-        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: {action in
-            
-            alert.dismiss(animated: true, completion: nil)
-        }))
-        self.present(alert, animated: true, completion: nil)
-        
+        }
+        else {
+         
+            //Clears all the content if user chooses to restart
+            let alert = UIAlertController(title: "Cancel Memification!", message: "Are you sure you want to clear all the changes?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
+                
+                self.topTextField.text = "Top Line"
+                self.bottomTextField.text = "Bottom Line"
+                self.memeImage.image = nil
+                alert.dismiss(animated: true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
+            }))
+            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: {action in
+                
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     override func viewDidLoad() {
@@ -107,6 +125,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
     }
     
+    //Function to change the attributes of the text
     func makeFont() {
         
         let memeTextAttributes:[String:Any] = [
@@ -122,8 +141,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewWillAppear(_ animated: Bool) {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MemeEditorViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MemeEditorViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
     }
     
@@ -173,11 +192,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
-        textField.text = ""
+        if textField.text == "Top Line" {
+            textField.text = ""
+        }
         
         if textField.tag == 1 {
             
             activeField = textField
+            
+            if textField.text == "Bottom Line" {
+                textField.text = ""
+            }
         }
         
     }

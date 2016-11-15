@@ -23,7 +23,7 @@ class CustomizeFontViewController: UIViewController, UIPickerViewDelegate, UIPic
     var finalFont: Font!
     var finalStroke: Stroke!
     var finalFill: UIColor!
-    var prevVC: ViewController!
+    var prevVC: MemeEditorViewController!
     
     @IBAction func useCustomization(_ sender: UIBarButtonItem) {
         
