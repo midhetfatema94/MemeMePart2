@@ -364,12 +364,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lx1-aE-aIi">
-                                            <rect key="frame" x="16" y="7.5" width="60" height="60"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lx1-aE-aIi">
+                                            <rect key="frame" x="16" y="7.5" width="60" height="59"/>
                                             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="6dn-20-FHw"/>
-                                                <constraint firstAttribute="height" constant="60" id="jhb-D0-wEN"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmO-m2-r7i">
@@ -380,9 +379,10 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="lx1-aE-aIi" firstAttribute="centerY" secondItem="xkc-Lx-eAl" secondAttribute="centerY" id="JkX-Tt-Q9e"/>
                                         <constraint firstItem="lmO-m2-r7i" firstAttribute="leading" secondItem="lx1-aE-aIi" secondAttribute="trailing" constant="8" id="O5u-4s-rUx"/>
+                                        <constraint firstAttribute="bottom" secondItem="lx1-aE-aIi" secondAttribute="bottom" constant="8" id="P5F-Qs-Mav"/>
                                         <constraint firstItem="lx1-aE-aIi" firstAttribute="leading" secondItem="xkc-Lx-eAl" secondAttribute="leadingMargin" constant="8" id="dX0-EL-5J7"/>
+                                        <constraint firstItem="lx1-aE-aIi" firstAttribute="top" secondItem="xkc-Lx-eAl" secondAttribute="top" constant="8" id="eqE-lx-fTs"/>
                                         <constraint firstItem="lmO-m2-r7i" firstAttribute="centerY" secondItem="xkc-Lx-eAl" secondAttribute="centerY" id="mvP-Th-1vm"/>
                                     </constraints>
                                 </tableViewCellContentView>

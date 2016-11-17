@@ -20,34 +20,9 @@ class SentMemesCollectionViewController: UICollectionViewController {
         
         rotated()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        
-        
-        // Register cell classes
-//        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "sentMemes")
-
-        // Do any additional setup after loading the view.
     }
     
-//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-//        
-//        super.viewWillTransition(to: size, with: coordinator)
-//        coordinator.animate(alongsideTransition: nil, completion: {handler in
-//            print("orientation changed")
-//        })
-//    }
-    
-//    override func viewWillTransitionToSize(to: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-//        super.viewWillTransition(to: to, with: coordinator)
-//        coordinator.animate(alongsideTransition: nil, completion: {
-//            _ in
-//            
-//            print("orientation changed")
-//        })
-//    }
-
+    //Code Reference: Stack OverFlow
     override func viewWillAppear(_ animated: Bool) {
         collectionView!.reloadData()
         NotificationCenter.default.addObserver(self, selector: #selector(SentMemesCollectionViewController.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
@@ -93,7 +68,7 @@ class SentMemesCollectionViewController: UICollectionViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         
-//        self.removeObserver(defa, forKeyPath: )
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: UICollectionViewDataSource
