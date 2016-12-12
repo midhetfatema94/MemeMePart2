@@ -212,7 +212,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             memeImage.contentMode = .scaleAspectFit
             memeImage.image = pickedImage
         }
