@@ -32,14 +32,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     @IBAction func cameraClicked(_ sender: UIBarButtonItem) {
         
-        imagePicker.sourceType = .camera
-        present(imagePicker, animated: true, completion: nil)
+        pick(source: .camera)
     }
     
     @IBAction func albumClicked(_ sender: UIBarButtonItem) {
         
-        imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true, completion: nil)
+        pick(source: .photoLibrary)
     }
     
     @IBAction func shareImage(_ sender: UIBarButtonItem) {
@@ -107,7 +105,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         super.viewDidLoad()
         
         imagePicker.delegate = self
-        imagePicker.allowsEditing = true
+//        imagePicker.allowsEditing = true
         
         bottomTextField.delegate = self
         bottomTextField.tag = 1
@@ -121,22 +119,21 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         fill = UIColor.white
         font = Font(name: "Impact", size: 56)
         stroke = Stroke(color: UIColor.black, width: 4.0)
-        makeFont()
+        makeFont(tf: topTextField, fontSize: 56)
+        makeFont(tf: bottomTextField, fontSize: 50)
         
     }
     
     //Function to change the attributes of the text
-    func makeFont() {
+    func makeFont(tf: UITextField, fontSize: Int) {
         
         let memeTextAttributes:[String:Any] = [
             NSStrokeColorAttributeName: stroke.color,
-            NSFontAttributeName: UIFont(name: font.name, size: CGFloat(font.size))!,
+            NSFontAttributeName: UIFont(name: font.name, size: CGFloat(fontSize))!,
             NSForegroundColorAttributeName: fill,
             NSStrokeWidthAttributeName: -(CGFloat(stroke.width))]
-        topTextField.defaultTextAttributes = memeTextAttributes
-        topTextField.textAlignment = .center
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.textAlignment = .center
+        tf.defaultTextAttributes = memeTextAttributes
+        tf.textAlignment = .center
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -166,6 +163,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             
             shareButton.isEnabled = true
         }
+    }
+    
+    func pick(source:UIImagePickerControllerSourceType){
+        
+        imagePicker.sourceType = source
+        present(imagePicker, animated: true, completion: nil)
     }
     
     func keyboardWillShow(_ notification: Notification) {

@@ -30,7 +30,8 @@ class CustomizeFontViewController: UIViewController, UIPickerViewDelegate, UIPic
         prevVC.fill = finalFill
         prevVC.font = finalFont
         prevVC.stroke = finalStroke
-        prevVC.makeFont()
+        let tempTextField = UITextField()
+        prevVC.makeFont(tf: tempTextField, fontSize: 56)
         self.dismiss(animated: true, completion: nil)
     }
     
