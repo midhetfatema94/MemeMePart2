@@ -51,14 +51,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             memeView.drawHierarchy(in: memeView.bounds, afterScreenUpdates: true)
         }
         
-        let saveMeme = Meme(topLine: topTextField.text!, bottomLine: bottomTextField.text!, memedImage: image, originalImage: memeImage.image!)
-        let object = UIApplication.shared.delegate
-        let appDelegate = object as! AppDelegate
-        appDelegate.memes.append(saveMeme)
+        sharingItems.append(image)
         
-        sharingItems.append(saveMeme.memedImage)
-        
-        CustomPhotoAlbum.sharedInstance.saveImage(image: saveMeme.memedImage)
+        CustomPhotoAlbum.sharedInstance.saveImage(image: image)
         isShared = true
         
         let activityViewController = UIActivityViewController(activityItems: sharingItems, applicationActivities: nil)
@@ -69,6 +64,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             (activity, success, items, error) in
             print("Activity: \(activity) Success: \(success) Items: \(items) Error: \(error)")
             if success && (activity != nil) {
+                
+                let saveMeme = Meme(topLine: self.topTextField.text!, bottomLine: self.bottomTextField.text!, memedImage: image, originalImage: self.memeImage.image!)
+                let object = UIApplication.shared.delegate
+                let appDelegate = object as! AppDelegate
+                appDelegate.memes.append(saveMeme)
+                
                 self.dismiss(animated: true, completion: nil)
             }
         }
