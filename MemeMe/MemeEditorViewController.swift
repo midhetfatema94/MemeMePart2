@@ -13,6 +13,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     let imagePicker = UIImagePickerController()
     var activeField: UITextField?
     var isShared = false
+    var isEdited = false
+    var editingIndex = 0
+    var editingMeme: Meme!
     
     @IBOutlet weak var memeView: UIView!
     @IBOutlet weak var bottomTextField: UITextField!
@@ -66,9 +69,19 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             if success && (activity != nil) {
                 
                 let saveMeme = Meme(topLine: self.topTextField.text!, bottomLine: self.bottomTextField.text!, memedImage: image, originalImage: self.memeImage.image!)
+                
                 let object = UIApplication.shared.delegate
                 let appDelegate = object as! AppDelegate
-                appDelegate.memes.append(saveMeme)
+                
+                if self.isEdited {
+                    
+                    appDelegate.memes[self.editingIndex] = saveMeme
+                    
+                }
+                else {
+                    
+                    appDelegate.memes.append(saveMeme)
+                }
                 
                 self.dismiss(animated: true, completion: nil)
             }
@@ -122,6 +135,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         stroke = Stroke(color: UIColor.black, width: 4.0)
         makeFont(tf: topTextField, fontSize: 56)
         makeFont(tf: bottomTextField, fontSize: 50)
+        
+        if isEdited {
+            
+            topTextField.text = editingMeme.topLine
+            bottomTextField.text = editingMeme.bottomLine
+            memeImage.image = editingMeme.originalImage
+        }
         
     }
     

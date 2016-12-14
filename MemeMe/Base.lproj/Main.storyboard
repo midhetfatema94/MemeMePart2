@@ -330,7 +330,7 @@
                     <navigationItem key="navigationItem" title="Sent Memes" id="Z1x-ni-b3w">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="xf2-x8-kIJ">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="presentation" id="ZEg-xF-Mdj"/>
+                                <segue destination="BYZ-38-t0r" kind="presentation" identifier="" id="ZEg-xF-Mdj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -398,6 +398,9 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="List" image="table" id="g8t-zJ-4Na"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="presentEditor" id="Lc8-TI-U4H"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gpH-sW-r09" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -493,4 +496,7 @@
         <image name="collection" width="30" height="30"/>
         <image name="table" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Lc8-TI-U4H"/>
+    </inferredMetricsTieBreakers>
 </document>
